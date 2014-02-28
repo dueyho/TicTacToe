@@ -27,16 +27,42 @@ var Space = {
 
 var Board = {
 
-spaces: [],
-createBoard: function() {
-var board = Object.create(Board);
-for (var i = 1; i < 4; i++) {
-  for (var j = 1; j < 4; j++) {
-    var space = Space.create(i,j);
-    Board.spaces.push(space);
+  spaces: [],
+  createSpaces: function() {
+    var board = Object.create(Board);
+    for (var i = 1; i <= 3; i++) {
+      for (var j = 1; j <= 3; j++) {
+        var space = Space.createSpace(i,j);
+        Board.spaces.push(Space);
+      }
+    }
   }
-}
-  return board;
+};
+
+var Game = {
+  createGame: function(player1, player2) {
+    var gameCreate = Object.create(Game);
+    gameCreate.initialize(player1, player2);
+    return gameCreate;
+  },
+  initialize: function(player1,player2) {
+    this.player1 = player1;
+    this.player2 = player2;
+  },
+
+  playerSwitch: function(currentPlayer) {
+   if (currentPlayer === "O") {
+    currentPlayer = "X";
+   } else {
+    currentPlayer = "O";
+   }
+   return currentPlayer;
+
+
+    // ((currentPlayer === "O")
+    //   ?currentPlayer = "X"
+    //   : currentPlayer = "O")
+    // return currentPlayer
   }
 };
 

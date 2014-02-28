@@ -1,3 +1,7 @@
+beforeEach(function() {
+  spaces: [];
+});
+
 describe("Player", function(){
   describe("initialize", function(){
     it("assigns a symbol to a player", function(){
@@ -42,11 +46,33 @@ describe("Space", function() {
 });
 
 describe("Board", function(){
-  describe("createBoard", function(){
+  describe("createSpaces", function(){
     it("creates 9 spaces when it is initialized",function(){
       var testBoard = Object.create(Board);
-      
-      Board.spaces.length.should.eql(9);
+      testBoard.createSpaces();
+      testBoard.spaces.length.should.eql(9);
+    });
+  });
+});
+
+describe("Game", function(){
+  describe('createGame', function() {
+    it("creates a game", function() {
+      var testGame = Object.create(Game);
+      Game.isPrototypeOf(testGame).should.equal(true);
+    });
+  });
+  describe("initialize", function() {
+    it("creates a new game instance", function() {
+      var testGame = Game.createGame("X","O");
+      testGame.player1 === "X";
+      testGame.player2 === "O";
+    });
+  });
+  describe("playerSwitch", function() {
+    it("switches the player's turn", function(){
+      var testGame = Game.createGame("X","O");
+      testGame.playerSwitch("O").should.equal("X");
     });
   });
 });
